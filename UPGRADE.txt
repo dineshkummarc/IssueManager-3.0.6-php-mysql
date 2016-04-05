@@ -1,0 +1,17 @@
+IssueManager Standard version 3.0
+UPGRADE GUIDE (PHP version)
+----------------------------------------------------------------------------------
+
+IMPORTANT!
+First step before you upgrade your application is to backup both application files and database.
+Depending on database engine use you need to use SQL Server's backup facilities or copy .mdb file from db folder to another location.
+It's possible that during installation data in your database will be overwritten or deleted!
+
+UPGRADING ASP+MSSQL
+1. Backup your database.
+2. Extract new version archive's files overwriting existing ones.
+3. Navigate the site to initiate installation process.
+4. Verify checklist and proceed to step 2.
+5. IMPORTANT: switch radio selection to "Use or upgrade existing IssueManager database"
+6. Verify database connection properties and other settings, provide actual administrator's password.
+7. Finish the installation.

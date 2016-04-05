@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>{res:im_application_title} - {res:im_installation}</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="CodeCharge Studio 3.0.4.5" name="GENERATOR">
+<link href="../Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<center>
+<!-- BEGIN Panel Panel1 --><br>
+<table cellspacing="0" cellpadding="0" width="780" border="0">
+		<tr>
+				<td valign="top">
+						<table class="Header" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+										<td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+										<th>{res:inst_welcome_install}</th>
+ 
+										<td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+								</tr>
+						</table>
+ 
+						<table class="Grid" cellspacing="0" cellpadding="0">
+								<tr class="Caption">
+										<th>{res:inst_application}</th>
+								</tr>
+ 
+								<tr class="Row">
+										<td>{res:inst_introduce}<br>
+												<br>
+												<table width="100%" border="0">
+														<tr>
+																<th style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><b>{res:inst_system_requirements}</b></th>
+ 
+																<th style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><b>{res:inst_status}</b></th>
+														</tr>
+ 
+														<tr>
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">{res:inst_php_version}</td> 
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><font color=green><b>{res:inst_status_ok}</b></font></td>
+														</tr>
+ 
+														<tr>
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">{res:inst_mysql_support}</td> 
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><b>{MySQLCheck}</b></td>
+														</tr>
+ 
+														<tr>
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">{res:inst_writable_common_php}</td> 
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><b>{WriteCheck}</b></td>
+														</tr>
+ 
+														<tr>
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px">{res:inst_writable_folder}</td> 
+																<td style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px"><b>{FolderCheck}</b></td>
+														</tr>
+												</table>
+												<br>
+												<br>
+
+<!-- BEGIN Panel WriteResolution --><br>
+<div style="border:1px solid red;padding:5px;background-color:white;color:red">
+  {res:inst_resolution_write_php}
+</div>
+<!-- END Panel WriteResolution -->
+												<br>
+												<br>
+										</td>
+								</tr>
+ 
+								<tr class="Row">
+										<td align="right"><a href="{InstallLink_Src}">{InstallLink}</a></td>
+								</tr>
+						</table>
+				</td>
+		</tr>
+</table>
+<!-- END Panel Panel1 -->
+<!-- BEGIN Panel Panel2 -->
+<!-- BEGIN Record sql_environment -->
+<script language="javascript">
+function switchSource(form, mode)
+{
+	setVisible("root_account1", mode=="create");
+	setVisible("root_account2", mode=="create");
+	setVisible("root_account3", mode=="create");
+	setVisible("root_account4", mode=="create");
+	setVisible("confirmsettings", mode=="empty");
+	setVisible("samplesettings", mode=="create" || mode=="empty");
+	setVisible("existingadminmsg", mode=="other");
+	setVisible("confirmpass", mode!="other");
+}
+
+function setVisible(id,visible)
+{
+	el = document.getElementById(id);
+	if (el) el.style.display = visible?"":"none";
+}
+function initSource()
+{
+	mode = getCheckedValue(document.forms["sql_environment"].DbSource);
+	switchSource(document.forms["sql_environment"], mode);
+}
+function getCheckedValue(radio)
+{
+	for(i=0;i<radio.length;i++)
+	{
+		if (radio[i].checked)
+			return radio[i].value;
+	}
+	return "";
+}
+window.onload=initSource;
+</script>
+<br>
+<form name="{HTMLFormName}" action="{Action}" method="post">
+		<table cellspacing="0" cellpadding="0" width="780" border="0">
+				<tr>
+						<td valign="top">
+								<table class="Header" cellspacing="0" cellpadding="0" border="0">
+										<tr>
+												<td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+												<th>{res:inst_step2}</th>
+ 
+												<td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+										</tr>
+								</table>
+ 
+								<table class="Record" cellspacing="0" cellpadding="0">
+										<tr class="Controls">
+												<td colspan="2">{res:inst_introduce2}<br>
+														<br>
+														<br>
+<div align="right"><font color="red">{res:inst_backup_warning}</font></div>
+												</td>
+										</tr>
+ 
+										<tr class="Footer">
+												<td colspan="2"><b>{res:inst_sql_environment_mysql}</b></td>
+										</tr>
+										<!-- BEGIN Error -->
+										<tr class="Error">
+												<td colspan="2">{Error}</td>
+										</tr>
+										<!-- END Error -->
+										<tr class="Controls">
+										  <th colspan="2">
+										  <!-- BEGIN RadioButton DbSource --><input {Check} id="{DbSource_Name}{Value}" type="radio" name="{DbSource_Name}" value="{Value}" onclick="switchSource(this.form,this.value)"><label for="{DbSource_Name}{Value}"><b>{Description}</b></label><br>
+										  <!-- END RadioButton DbSource --></th>
+										</tr>
+
+										<tr class="Controls">
+												<th>{res:inst_sql_host} *</th>
+ 
+												<td><input value="{sql_host}" name="{sql_host_Name}"></td>
+										</tr>
+ 
+										<tr class="Controls">
+												<th>{res:inst_sql_database_name} *</th>
+ 
+												<td nowrap><input value="{sql_db_name}" name="{sql_db_name_Name}"></td>	
+										</tr>
+ 
+										<tr class="Controls">
+												<th>{res:inst_sql_username} *</th>
+ 
+												<td><input value="{sql_username}" name="{sql_username_Name}"></td>
+										</tr>
+ 
+										<tr class="Controls">
+												<th>{res:inst_sql_password}</th>
+ 
+												<td><input type="password" value="{sql_password}" name="{sql_password_Name}"></td>
+										</tr>
+										<!-- BEGIN CheckBox ConfirmDelete -->
+										<tr class="Controls" id="confirmsettings">
+										  <th><B><font color=red>{res:inst_confirm_delete}</font></B></th>
+ 
+										  <td><input type="checkbox" value="1" name="{ConfirmDelete_Name}" {ConfirmDelete}>&nbsp;</td>
+										</tr>
+										<!-- END CheckBox ConfirmDelete -->
+ 
+										<tr class="Controls" id="samplesettings">
+												<th>{res:inst_sample_data}</th>
+ 
+												<td><input type="checkbox" value="1" name="{SampleData_Name}" {SampleData}>&nbsp;</td>
+										</tr>
+ 
+										<tr class="Footer" id="root_account1" style="DISPLAY: none">
+												<td colspan="2"><b>{res:inst_db_admin_account}</b></td>
+										</tr>
+ 
+										<tr class="Controls" id="root_account4" style="DISPLAY: none">
+												<td align="center" colspan="2">{res:inst_db_admin_account_desc}</td>
+										</tr>
+ 
+										<tr class="Controls" id="root_account2" style="DISPLAY: none">
+												<th>{res:inst_db_admin_name} *</th>
+ 
+												<td><input value="{root_username}" name="{root_username_Name}"></td>
+										</tr>
+ 
+										<tr class="Controls" id="root_account3" style="DISPLAY: none">
+												<th>{res:inst_db_admin_password}</th>
+ 
+												<td><input type="password" value="{root_password}" name="{root_password_Name}"></td>
+										</tr>
+ 
+										<tr class="Footer">
+												<td colspan="2"><b>{res:inst_your_admin_account}</b></td>
+										</tr>
+  										<tr class="Controls" id="existingadminmsg" style="display:none">
+										  <td colspan="2" align="center">
+										  	{res:inst_existing_admin}
+										  </td> 
+										</tr>
+
+										<tr class="Controls">
+												<th>{res:CCS_Login} *</th>
+ 
+												<td><input value="{user_login}" name="{user_login_Name}"></td>
+										</tr>
+ 
+										<tr class="Controls">
+												<th>{res:CCS_Password} *</th>
+ 
+												<td><input type="password" value="{user_password}" name="{user_password_Name}"></td>
+										</tr>
+ 
+										<tr class="Controls" id="confirmpass">
+												<th>{res:inst_user_confirm_password} *</th>
+ 
+												<td><input type="password" value="{user_password_rep}" name="{user_password_rep_Name}"></td>
+										</tr>
+ 
+										<tr class="Bottom">
+												<td align="right" colspan="2">
+														<!-- BEGIN Button Update --><input class="Button" type="submit" value="{res:CCS_Update}" border="0" name="{Button_Name}"><!-- END Button Update --></td>
+										</tr>
+								</table>
+						</td>
+				</tr>
+		</table>
+</form>
+<!-- END Record sql_environment --><!-- END Panel Panel2 -->
+<!-- BEGIN Panel Panel3 --><br>
+<table cellspacing="0" cellpadding="0" width="780" border="0">
+		<tr>
+				<td valign="top">
+						<table class="Header" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+										<td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+										<th>{res:inst_finish}</th>
+ 
+										<td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+								</tr>
+						</table>
+ 
+						<table class="Record" cellspacing="0" cellpadding="0">
+								<tr class="Controls">
+										<td colspan="2">{res:inst_finish2}</td>
+								</tr>
+ 
+								<tr class="Row">
+										<td align="center" colspan="2">
+												<br>
+												<br>
+												<br>
+												<br>
+												<B>{res:inst_finish_desc}</B><br>
+												<br>
+												<br>
+												<br>
+												<br>
+										</td>
+								</tr>
+ 
+								<tr class="Row">
+										<td align="right"><a href="{Link2_Src}">{res:inst_start}</a></td>
+								</tr>
+						</table>
+				</td>
+		</tr>
+</table>
+<!-- END Panel Panel3 -->
+</center>
+</body>
+</html>

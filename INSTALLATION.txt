@@ -1,0 +1,28 @@
+IssueManager Standard version 3.0
+INSTALLATION GUIDE (PHP version)
+----------------------------------------------------------------------------------
+
+REQUIREMENTS:
+- PHP version >= 4.1 with MySQL and mb extensions
+- any operating system and web server configured to handle PHP
+- MySQL database version >= 4.x
+- web/server administrative rights
+- possibility to grant permissions to web folders
+
+
+INSTALLATION STEPS:
+
+1. Extract archive contents to some directory under your web root directory.
+
+2. Grant write permissions on upload folders to your web server identity (or group).
+Update permissions to the following subfolders and files:
+
+uploads
+temp
+Common.php
+
+3. Navigate your application in your browser.
+
+4. Installation process should initiate displaying server requirements checklist.
+
+5. If passed continue installation process configuring database connection details and administrator's password.
