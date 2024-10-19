@@ -60,39 +60,40 @@ class clsRecordsql_environment { //sql_environment Class @2-CE2C11EE
         if($this->Visible)
         {
             $this->ComponentName = "sql_environment";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            // $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->DbSource = & new clsControl(ccsRadioButton, "DbSource", "DbSource", ccsText, "", CCGetRequestParam("DbSource", $Method, NULL), $this);
+            $this->DbSource = new clsControl(ccsRadioButton, "DbSource", "DbSource", ccsText, "", CCGetRequestParam("DbSource", $Method, NULL), $this);
             $this->DbSource->DSType = dsListOfValues;
             $this->DbSource->Values = array(array("create", $CCSLocales->GetText("inst_dbsource_create")), array("empty", $CCSLocales->GetText("inst_dbsource_empty")), array("other", $CCSLocales->GetText("inst_dbsource_other")));
             $this->DbSource->HTML = true;
-            $this->sql_host = & new clsControl(ccsTextBox, "sql_host", $CCSLocales->GetText("inst_sql_host"), ccsText, "", CCGetRequestParam("sql_host", $Method, NULL), $this);
+            $this->sql_host = new clsControl(ccsTextBox, "sql_host", $CCSLocales->GetText("inst_sql_host"), ccsText, "", CCGetRequestParam("sql_host", $Method, NULL), $this);
             $this->sql_host->Required = true;
-            $this->sql_db_name = & new clsControl(ccsTextBox, "sql_db_name", $CCSLocales->GetText("inst_sql_database_name"), ccsText, "", CCGetRequestParam("sql_db_name", $Method, NULL), $this);
+            $this->sql_db_name = new clsControl(ccsTextBox, "sql_db_name", $CCSLocales->GetText("inst_sql_database_name"), ccsText, "", CCGetRequestParam("sql_db_name", $Method, NULL), $this);
             $this->sql_db_name->Required = true;
-            $this->sql_username = & new clsControl(ccsTextBox, "sql_username", $CCSLocales->GetText("inst_sql_username"), ccsText, "", CCGetRequestParam("sql_username", $Method, NULL), $this);
+            $this->sql_username = new clsControl(ccsTextBox, "sql_username", $CCSLocales->GetText("inst_sql_username"), ccsText, "", CCGetRequestParam("sql_username", $Method, NULL), $this);
             $this->sql_username->Required = true;
-            $this->sql_password = & new clsControl(ccsTextBox, "sql_password", $CCSLocales->GetText("inst_sql_password"), ccsText, "", CCGetRequestParam("sql_password", $Method, NULL), $this);
-            $this->ConfirmDelete = & new clsControl(ccsCheckBox, "ConfirmDelete", "ConfirmDelete", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("ConfirmDelete", $Method, NULL), $this);
+            $this->sql_password = new clsControl(ccsTextBox, "sql_password", $CCSLocales->GetText("inst_sql_password"), ccsText, "", CCGetRequestParam("sql_password", $Method, NULL), $this);
+            $this->ConfirmDelete = new clsControl(ccsCheckBox, "ConfirmDelete", "ConfirmDelete", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("ConfirmDelete", $Method, NULL), $this);
             $this->ConfirmDelete->CheckedValue = true;
             $this->ConfirmDelete->UncheckedValue = false;
             $this->ConfirmDelete->Visible = false;
-            $this->SampleData = & new clsControl(ccsCheckBox, "SampleData", "SampleData", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("SampleData", $Method, NULL), $this);
+            $this->SampleData = new clsControl(ccsCheckBox, "SampleData", "SampleData", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("SampleData", $Method, NULL), $this);
             $this->SampleData->CheckedValue = true;
             $this->SampleData->UncheckedValue = false;
-            $this->root_username = & new clsControl(ccsTextBox, "root_username", $CCSLocales->GetText("inst_db_admin_name"), ccsText, "", CCGetRequestParam("root_username", $Method, NULL), $this);
-            $this->root_password = & new clsControl(ccsTextBox, "root_password", $CCSLocales->GetText("inst_db_admin_password"), ccsText, "", CCGetRequestParam("root_password", $Method, NULL), $this);
-            $this->user_login = & new clsControl(ccsTextBox, "user_login", $CCSLocales->GetText("CCS_Login"), ccsText, "", CCGetRequestParam("user_login", $Method, NULL), $this);
+            $this->root_username = new clsControl(ccsTextBox, "root_username", $CCSLocales->GetText("inst_db_admin_name"), ccsText, "", CCGetRequestParam("root_username", $Method, NULL), $this);
+            $this->root_password = new clsControl(ccsTextBox, "root_password", $CCSLocales->GetText("inst_db_admin_password"), ccsText, "", CCGetRequestParam("root_password", $Method, NULL), $this);
+            $this->user_login = new clsControl(ccsTextBox, "user_login", $CCSLocales->GetText("CCS_Login"), ccsText, "", CCGetRequestParam("user_login", $Method, NULL), $this);
             $this->user_login->Required = true;
-            $this->user_password = & new clsControl(ccsTextBox, "user_password", $CCSLocales->GetText("CCS_Password"), ccsText, "", CCGetRequestParam("user_password", $Method, NULL), $this);
+            $this->user_password = new clsControl(ccsTextBox, "user_password", $CCSLocales->GetText("CCS_Password"), ccsText, "", CCGetRequestParam("user_password", $Method, NULL), $this);
             $this->user_password->Required = true;
-            $this->user_password_rep = & new clsControl(ccsTextBox, "user_password_rep", $CCSLocales->GetText("inst_user_confirm_password"), ccsText, "", CCGetRequestParam("user_password_rep", $Method, NULL), $this);
-            $this->Update = & new clsButton("Update", $Method, $this);
+            $this->user_password_rep = new clsControl(ccsTextBox, "user_password_rep", $CCSLocales->GetText("inst_user_confirm_password"), ccsText, "", CCGetRequestParam("user_password_rep", $Method, NULL), $this);
+            $this->Update = new clsButton("Update", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->DbSource->Value) && !strlen($this->DbSource->Value) && $this->DbSource->Value !== false)
                     $this->DbSource->SetText("empty");
@@ -295,20 +296,20 @@ $DBIM = new clsDBIM();
 $MainPage->Connections["IM"] = & $DBIM;
 
 // Controls
-$Panel1 = & new clsPanel("Panel1", $MainPage);
-$MySQLCheck = & new clsControl(ccsLabel, "MySQLCheck", "MySQLCheck", ccsText, "", CCGetRequestParam("MySQLCheck", ccsGet, NULL), $MainPage);
+$Panel1 = new clsPanel("Panel1", $MainPage);
+$MySQLCheck = new clsControl(ccsLabel, "MySQLCheck", "MySQLCheck", ccsText, "", CCGetRequestParam("MySQLCheck", ccsGet, NULL), $MainPage);
 $MySQLCheck->HTML = true;
-$WriteCheck = & new clsControl(ccsLabel, "WriteCheck", "WriteCheck", ccsText, "", CCGetRequestParam("WriteCheck", ccsGet, NULL), $MainPage);
+$WriteCheck = new clsControl(ccsLabel, "WriteCheck", "WriteCheck", ccsText, "", CCGetRequestParam("WriteCheck", ccsGet, NULL), $MainPage);
 $WriteCheck->HTML = true;
-$FolderCheck = & new clsControl(ccsLabel, "FolderCheck", "FolderCheck", ccsText, "", CCGetRequestParam("FolderCheck", ccsGet, NULL), $MainPage);
+$FolderCheck = new clsControl(ccsLabel, "FolderCheck", "FolderCheck", ccsText, "", CCGetRequestParam("FolderCheck", ccsGet, NULL), $MainPage);
 $FolderCheck->HTML = true;
-$WriteResolution = & new clsPanel("WriteResolution", $MainPage);
-$InstallLink = & new clsControl(ccsLink, "InstallLink", "InstallLink", ccsText, "", CCGetRequestParam("InstallLink", ccsGet, NULL), $MainPage);
+$WriteResolution = new clsPanel("WriteResolution", $MainPage);
+$InstallLink = new clsControl(ccsLink, "InstallLink", "InstallLink", ccsText, "", CCGetRequestParam("InstallLink", ccsGet, NULL), $MainPage);
 $InstallLink->Page = "install.php";
-$Panel2 = & new clsPanel("Panel2", $MainPage);
-$sql_environment = & new clsRecordsql_environment("", $MainPage);
-$Panel3 = & new clsPanel("Panel3", $MainPage);
-$Link2 = & new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet, NULL), $MainPage);
+$Panel2 = new clsPanel("Panel2", $MainPage);
+$sql_environment = new clsRecordsql_environment("", $MainPage);
+$Panel3 = new clsPanel("Panel3", $MainPage);
+$Link2 = new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet, NULL), $MainPage);
 $Link2->Page = "../Default.php";
 $MainPage->Panel1 = & $Panel1;
 $MainPage->MySQLCheck = & $MySQLCheck;
